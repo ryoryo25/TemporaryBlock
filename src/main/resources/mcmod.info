@@ -1,0 +1,16 @@
+[
+	{
+		"modid": "temporaryblock",
+		"name": "TemporaryBlock",
+		"description": "This mod adds Temporary Block.",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "Nothing",
+		"updateUrl": "Nothing",
+		"authorList": ["ryoryo"],
+		"credits": "Many minecraft modders!",
+		"logoFile": "assets/temporaryblock/mod_logo.png",
+		"screenshots": [],
+		"dependencies": []
+	}
+]
