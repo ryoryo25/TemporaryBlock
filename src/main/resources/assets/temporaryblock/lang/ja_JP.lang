@@ -1,3 +1,6 @@
 
 //block
 tile.temporary_block.name=仮置きブロック
+
+//item
+item.temporary_block_placer.name=仮置きブロック設置棒

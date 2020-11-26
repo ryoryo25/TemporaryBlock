@@ -1,3 +1,6 @@
 
 //block
 tile.temporary_block.name=Temporary Block
+
+//item
+item.temporary_block_placer.name=Temporary Block Placer
