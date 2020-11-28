@@ -5,7 +5,6 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,22 +25,24 @@ public class ChainDestructionHandler {
 
 		if(player.isSneaking() && target.getBlock() == ModBlocks.BLOCK_TEMPORARY) {
 			event.setCanceled(true);
-			destroyAllBlocks(world, firstPos, ModBlocks.BLOCK_TEMPORARY, 16);
+			replaceAllBlocks(world, firstPos, ModBlocks.BLOCK_TEMPORARY.getDefaultState(), Blocks.AIR.getDefaultState(), 16);
 		}
 	}
 
-	private void destroyAllBlocks(World world, BlockPos origin, Block toDestroy, int radius) {
+	private void replaceAllBlocks(World world, BlockPos origin, IBlockState toReplace, IBlockState toPlace, int radius) {
 		Deque<BlockPos> queue = new ArrayDeque<BlockPos>();
 		queue.offerLast(origin);
-		//			world.destroyBlock(firstPos, false);
+		world.setBlockState(origin, toPlace, 2);
+		Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(origin, toReplace);
+
 		while(!queue.isEmpty()) {
 			BlockPos pos = queue.pollFirst();
 			if(origin.distanceSq(pos) <= radius * radius) {
 				for(BlockPos posIn : getAllInSphere(pos, 3)) { // (sqrt(3))^2 = 3
-					if(world.getBlockState(posIn).getBlock() == toDestroy) {
+					if(world.getBlockState(posIn) == toReplace) {
 						queue.offerLast(posIn);
-						world.setBlockState(posIn, Blocks.AIR.getDefaultState(), 2);
-						Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(posIn, toDestroy.getDefaultState());
+						world.setBlockState(posIn, toPlace/*, 2*/);
+						Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(posIn, toReplace);
 					}
 				}
 			}
