@@ -2,8 +2,6 @@ package ryoryo.temporaryblock.handler;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashSet;
-import java.util.Set;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -13,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import ryoryo.polishedlib.util.Utils;
 import ryoryo.temporaryblock.block.ModBlocks;
 
 public class ChainDestructionHandler {
@@ -38,7 +37,7 @@ public class ChainDestructionHandler {
 		while(!queue.isEmpty()) {
 			BlockPos pos = queue.pollFirst();
 			if(origin.distanceSq(pos) <= radius * radius) {
-				for(BlockPos posIn : getAllInSphere(pos, 3)) { // (sqrt(3))^2 = 3
+				for(BlockPos posIn : Utils.getAllInSphere(pos, 3)) { // (sqrt(3))^2 = 3
 					if(world.getBlockState(posIn) == toReplace) {
 						queue.offerLast(posIn);
 						world.setBlockState(posIn, toPlace/*, 2*/);
@@ -47,20 +46,5 @@ public class ChainDestructionHandler {
 				}
 			}
 		}
-	}
-
-	private Set<BlockPos> getAllInSphere(BlockPos center, int radiusSq) {
-		int radius = (int) Math.floor(Math.sqrt((double) radiusSq));
-		Set<BlockPos> all = new HashSet<>();
-		BlockPos from = center.add(-radius, -radius, -radius);
-		BlockPos to = center.add(radius, radius, radius);
-
-		for(BlockPos pos : BlockPos.getAllInBox(from, to)) {
-			if(pos.getY() < 0 || pos.getY() > 255 || center.distanceSq(pos) > radiusSq)
-				continue;
-			all.add(pos);
-		}
-
-		return all;
 	}
 }
