@@ -33,7 +33,7 @@ public class TemporaryBlockReplaceHandler {
 
 		if(!player.isSneaking() && world.getBlockState(targetPos).getBlock() == ModBlocks.BLOCK_TEMPORARY) {
 			if(!held.isEmpty() && !(held.getItem() instanceof ItemTemporaryBlockPlacer)) {
-				if(held.getItem() instanceof ItemBlock) {
+				if(held.getItem() instanceof ItemBlock && ((ItemBlock) held.getItem()).getBlock() != ModBlocks.BLOCK_TEMPORARY) {
 					event.setCanceled(true); // cancel placing block normally
 					useItem(held, (ItemBlock) held.getItem(), player, world, targetPos, event.getHand(), facing, hitVec.x, hitVec.y, hitVec.z);
 				} else if(held.getItem() instanceof ItemBlockSpecial) {
