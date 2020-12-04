@@ -1,6 +1,6 @@
 
 //block
-tile.temporary_block.name=仮置きブロック
+tile.temporary_block.name=仮組みブロック
 
 //item
-item.temporary_block_placer.name=仮置きブロック設置棒
+item.temporary_block_placer.name=仮組みブロック設置棒
