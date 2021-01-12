@@ -13,6 +13,7 @@ public class References {
 			//			+ "required-after:polishedlib@[1.0.3,);";
 			+ "required-after:polishedlib;";
 	public static final String MOD_ACCEPTED_MC_VERSIONS = "[1.12.2]";
+	public static final String MOD_GUI_FACTORY = "ryoryo.temporaryblock.config.GuiFactoryModConfig";
 
 	public static final String PROXY_CLIENT = "ryoryo.temporaryblock.proxy.ClientProxy";
 	public static final String PROXY_COMMON = "ryoryo.temporaryblock.proxy.CommonProxy";

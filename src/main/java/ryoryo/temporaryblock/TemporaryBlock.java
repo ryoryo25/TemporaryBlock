@@ -15,7 +15,7 @@ import ryoryo.polishedlib.util.RegistryUtils;
 import ryoryo.temporaryblock.proxy.CommonProxy;
 import ryoryo.temporaryblock.util.References;
 
-@Mod(modid = References.MOD_ID, name = References.MOD_NAME, version = References.MOD_VERSION, dependencies = References.MOD_DEPENDENCIES, acceptedMinecraftVersions = References.MOD_ACCEPTED_MC_VERSIONS)
+@Mod(modid = References.MOD_ID, name = References.MOD_NAME, version = References.MOD_VERSION, dependencies = References.MOD_DEPENDENCIES, acceptedMinecraftVersions = References.MOD_ACCEPTED_MC_VERSIONS, useMetadata = true, guiFactory = References.MOD_GUI_FACTORY)
 public class TemporaryBlock {
 	@Instance(References.MOD_ID)
 	public static TemporaryBlock INSTANCE;
