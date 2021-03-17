@@ -21,7 +21,7 @@ public class BlockTemporary extends BlockBase {
 		super(Material.ROCK, "temporary_block");
 		this.setSoundType(SoundType.METAL);
 		this.setHardness(0.0F);
-		this.setResistance(10000.0F);
+		this.setResistance(15.0F);
 	}
 
 	// drop nothing
