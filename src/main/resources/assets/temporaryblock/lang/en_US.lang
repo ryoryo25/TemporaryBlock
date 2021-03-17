@@ -4,3 +4,9 @@ tile.temporary_block.name=Temporary Block
 
 //item
 item.temporary_block_placer.name=Temporary Block Placer
+
+//chat
+chat.run_out_durability=No blocks charged!
+
+//tooltip
+tooltip.remain_usage=%d Blocks

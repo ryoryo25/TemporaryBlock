@@ -4,3 +4,9 @@ tile.temporary_block.name=仮組みブロック
 
 //item
 item.temporary_block_placer.name=仮組みブロック設置棒
+
+//chat
+chat.run_out_durability=ブロックを補充してください!
+
+//tooltip
+tooltip.remain_usage=%d個
