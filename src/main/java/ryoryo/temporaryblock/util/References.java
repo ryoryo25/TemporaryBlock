@@ -17,4 +17,7 @@ public class References {
 
 	public static final String PROXY_CLIENT = "ryoryo.temporaryblock.proxy.ClientProxy";
 	public static final String PROXY_COMMON = "ryoryo.temporaryblock.proxy.CommonProxy";
+
+	public static final String CHAT_RUN_OUT_DURABILITY = "chat.run_out_durability";
+	public static final String TOOLTIP_REMAIN_USAGE = "tooltip.remain_usage";
 }
