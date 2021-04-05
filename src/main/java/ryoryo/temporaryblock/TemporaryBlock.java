@@ -3,6 +3,7 @@ package ryoryo.temporaryblock;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import ryoryo.polishedlib.util.RegistryUtils;
+import ryoryo.temporaryblock.config.ModConfig;
 import ryoryo.temporaryblock.proxy.CommonProxy;
 import ryoryo.temporaryblock.util.References;
 
@@ -23,12 +24,14 @@ public class TemporaryBlock {
 	@SidedProxy(clientSide = References.PROXY_CLIENT, serverSide = References.PROXY_COMMON)
 	public static CommonProxy proxy;
 
+	public static ModConfig config;
 	public static final Logger LOGGER = LogManager.getLogger(References.MOD_ID);
-	public static final RegistryUtils REGISTER = new RegistryUtils(References.MOD_ID);
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		INSTANCE = this;
+		config = new ModConfig(event.getSuggestedConfigurationFile());
+		MinecraftForge.EVENT_BUS.register(config);
 		proxy.preInit(event);
 	}
 

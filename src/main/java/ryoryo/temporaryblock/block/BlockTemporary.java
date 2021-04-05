@@ -18,7 +18,7 @@ import ryoryo.polishedlib.block.BlockBase;
 
 public class BlockTemporary extends BlockBase {
 	public BlockTemporary() {
-		super(Material.ROCK, "temporary_block");
+		super("temporary_block", Material.ROCK);
 		this.setSoundType(SoundType.METAL);
 		this.setHardness(0.0F);
 		this.setResistance(15.0F);
