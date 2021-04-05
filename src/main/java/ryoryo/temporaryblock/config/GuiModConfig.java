@@ -13,7 +13,7 @@ import ryoryo.temporaryblock.util.References;
 
 public class GuiModConfig extends GuiConfig {
 	public GuiModConfig(GuiScreen parentScreen) {
-		super(parentScreen, getConfigElements(), References.MOD_ID, false, false, References.MOD_NAME + " Configurations");
+		super(parentScreen, getConfigElements(), References.MOD_ID, false, false, References.MOD_NAME + " Configurations(WIP)");
 	}
 
 	private static List<IConfigElement> getConfigElements() {
