@@ -9,6 +9,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import ryoryo.polishedlib.util.Utils;
 import ryoryo.temporaryblock.TemporaryBlock;
+import ryoryo.temporaryblock.crafting.RecipeChargePlacer;
 import ryoryo.temporaryblock.util.References;
 
 // @Config(modid = LibMisc.MOD_ID)
@@ -36,6 +37,7 @@ public class ModConfig {
 			if (config.hasChanged()) {
 				config.save();
 			}
+			RecipeChargePlacer.reloadMap(chargeItems);
 		}
 	}
 
@@ -51,7 +53,7 @@ public class ModConfig {
 				new String[] {
 						Blocks.COBBLESTONE.getRegistryName() + ">" + 1,
 						Blocks.DIRT.getRegistryName() + ">" + 1
-				}, "Map of items and value for charging Temporary Block Placer. Format: \"minecraft:dirt>1\"");
+				}, "Map of items and counts for charging Temporary Block Placer. Format: \"minecraft:dirt>1\"");
 	}
 
 	public static enum EnumConfigCategory {
