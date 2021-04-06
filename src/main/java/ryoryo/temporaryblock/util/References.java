@@ -12,6 +12,7 @@ public class References {
 	public static final String MOD_DEPENDENCIES = "required-after:forge@[14.23.5.2768,);"
 			//			+ "required-after:polishedlib@[1.1.0,);";
 			+ "required-after:polishedlib;";
+
 	public static final String MOD_ACCEPTED_MC_VERSIONS = "[1.12.2]";
 	public static final String MOD_GUI_FACTORY = "ryoryo.temporaryblock.config.GuiFactoryModConfig";
 
