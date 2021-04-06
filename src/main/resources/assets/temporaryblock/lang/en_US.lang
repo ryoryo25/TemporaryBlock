@@ -10,3 +10,4 @@ chat.run_out_durability=No blocks charged!
 
 //tooltip
 tooltip.remain_usage=%d Blocks
+tooltip.drop=No durability NBT! Drop on ground!

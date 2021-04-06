@@ -10,3 +10,4 @@ chat.run_out_durability=ブロックを補充してください!
 
 //tooltip
 tooltip.remain_usage=%d個
+tooltip.drop=耐久値のNBTが付与されていません！地面にドロップしてください！
