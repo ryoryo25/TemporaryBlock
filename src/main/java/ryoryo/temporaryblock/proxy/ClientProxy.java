@@ -8,6 +8,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
-		MinecraftForge.EVENT_BUS.register(new RenderSelectionBox());
+		MinecraftForge.EVENT_BUS.register(RenderSelectionBox.class);
 	}
 }
