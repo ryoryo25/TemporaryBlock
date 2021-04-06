@@ -20,4 +20,5 @@ public class References {
 
 	public static final String CHAT_RUN_OUT_DURABILITY = "chat.run_out_durability";
 	public static final String TOOLTIP_REMAIN_USAGE = "tooltip.remain_usage";
+	public static final String TOOLTIP_DROP = "tooltip.drop";
 }
