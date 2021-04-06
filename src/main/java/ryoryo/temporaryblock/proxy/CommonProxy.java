@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import ryoryo.polishedlib.util.handlers.RecipeHandler;
 import ryoryo.temporaryblock.block.ModBlocks;
-import ryoryo.temporaryblock.crafting.RecipeChargePlacer;
+import ryoryo.temporaryblock.handler.BridgeOldVersionHandler;
 import ryoryo.temporaryblock.handler.ChainDestructionHandler;
 import ryoryo.temporaryblock.handler.TemporaryBlockReplaceHandler;
 import ryoryo.temporaryblock.item.ItemTemporaryBlockPlacer;
@@ -23,16 +23,18 @@ public class CommonProxy {
 	public void init(FMLInitializationEvent event) {
 
 		RecipeHandler.addRecipe("temporary_block_placer",
-				ItemTemporaryBlockPlacer.getStackWithDurability(0),
+				//				ItemTemporaryBlockPlacer.getStackWithDurability(0),
+				ItemTemporaryBlockPlacer.getNewStackWithDurability(512),
 				"iCi",
 				" i ",
 				" i ",
 				'i', "ingotIron",
 				'C', Blocks.COBBLESTONE);
-		RecipeChargePlacer.addRecipe("charge_temporary_block_placer");
+		//		RecipeChargePlacer.addRecipe("charge_temporary_block_placer");
 
-		MinecraftForge.EVENT_BUS.register(new TemporaryBlockReplaceHandler());
-		MinecraftForge.EVENT_BUS.register(new ChainDestructionHandler());
+		MinecraftForge.EVENT_BUS.register(TemporaryBlockReplaceHandler.class);
+		MinecraftForge.EVENT_BUS.register(ChainDestructionHandler.class);
+		MinecraftForge.EVENT_BUS.register(BridgeOldVersionHandler.class);
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {}
