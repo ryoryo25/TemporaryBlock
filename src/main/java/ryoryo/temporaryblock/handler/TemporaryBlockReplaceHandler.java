@@ -22,8 +22,9 @@ import ryoryo.temporaryblock.block.ModBlocks;
 import ryoryo.temporaryblock.item.ItemTemporaryBlockPlacer;
 
 public class TemporaryBlockReplaceHandler {
+
 	@SubscribeEvent
-	public void rightClickBlock(RightClickBlock event) {
+	public static void rightClickBlock(RightClickBlock event) {
 		EntityPlayer player = event.getEntityPlayer();
 		World world = event.getWorld();
 		BlockPos targetPos = event.getPos();
@@ -31,18 +32,18 @@ public class TemporaryBlockReplaceHandler {
 		EnumFacing facing = event.getFace();
 		Vec3d hitVec = event.getHitVec();
 
-		if(!player.isSneaking() && world.getBlockState(targetPos).getBlock() == ModBlocks.BLOCK_TEMPORARY) {
-			if(!held.isEmpty() && !(held.getItem() instanceof ItemTemporaryBlockPlacer)) {
-				if(held.getItem() instanceof ItemBlock && ((ItemBlock) held.getItem()).getBlock() != ModBlocks.BLOCK_TEMPORARY) {
+		if (!player.isSneaking() && world.getBlockState(targetPos).getBlock() == ModBlocks.BLOCK_TEMPORARY) {
+			if (!held.isEmpty() && !(held.getItem() instanceof ItemTemporaryBlockPlacer)) {
+				if (held.getItem() instanceof ItemBlock && ((ItemBlock) held.getItem()).getBlock() != ModBlocks.BLOCK_TEMPORARY) {
 					event.setCanceled(true); // cancel placing block normally
 					useItem(held, (ItemBlock) held.getItem(), player, world, targetPos, event.getHand(), facing, hitVec.x, hitVec.y, hitVec.z);
-				} else if(held.getItem() instanceof ItemBlockSpecial) {
+				} else if (held.getItem() instanceof ItemBlockSpecial) {
 					event.setCanceled(true);
 					useItem(held, (ItemBlockSpecial) held.getItem(), player, world, targetPos, event.getHand(), facing, hitVec.x, hitVec.y, hitVec.z);
-				} else if(held.getItem() instanceof ItemBed) {
+				} else if (held.getItem() instanceof ItemBed) {
 					event.setCanceled(true);
 					useItem(held, (ItemBed) held.getItem(), player, world, targetPos, event.getHand(), facing, hitVec.x, hitVec.y, hitVec.z);
-				} else if(held.getItem() instanceof ItemDoor) {
+				} else if (held.getItem() instanceof ItemDoor) {
 					event.setCanceled(true);
 					useItem(held, (ItemDoor) held.getItem(), player, world, targetPos, event.getHand(), facing, hitVec.x, hitVec.y, hitVec.z);
 				}
@@ -50,13 +51,13 @@ public class TemporaryBlockReplaceHandler {
 		}
 	}
 
-	private void useItem(ItemStack held, Item heldItem, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, double hitX, double hitY, double hitZ) {
+	private static void useItem(ItemStack held, Item heldItem, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, double hitX, double hitY, double hitZ) {
 		world.setBlockState(pos, Blocks.AIR.getDefaultState()); // temporarily replace it with Air Block
 
-		if(heldItem.onItemUse(player, world, pos, hand, facing, (float) hitX, (float) hitY, (float) hitZ).equals(EnumActionResult.SUCCESS)) {
+		if (heldItem.onItemUse(player, world, pos, hand, facing, (float) hitX, (float) hitY, (float) hitZ).equals(EnumActionResult.SUCCESS)) {
 			player.swingArm(hand);
 
-			if(world.isRemote) {
+			if (world.isRemote) {
 				// spawn block destroy particle
 				// world#destroyBlock uses world#playEvent to show destroy particle and broadcast destroy sound
 				// world.playEvent(2001, pos, Block.getStateId(ModBlocks.BLOCK_TEMPORARY.getDefaultState()));
@@ -66,7 +67,7 @@ public class TemporaryBlockReplaceHandler {
 				// world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, x, y, z, xSpeed, ySpeed, zSpeed, Block.getStateId(state));
 			}
 
-			if(Utils.isCreative(player))
+			if (Utils.isCreative(player))
 				held.grow(1);
 		} else {
 			world.setBlockState(pos, ModBlocks.BLOCK_TEMPORARY.getDefaultState());

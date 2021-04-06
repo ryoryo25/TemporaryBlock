@@ -15,30 +15,31 @@ import ryoryo.polishedlib.util.Utils;
 import ryoryo.temporaryblock.block.ModBlocks;
 
 public class ChainDestructionHandler {
+
 	@SubscribeEvent
-	public void chainDestruction(BreakEvent event) {
+	public static void chainDestruction(BreakEvent event) {
 		EntityPlayer player = event.getPlayer();
 		IBlockState target = event.getState();
 		World world = event.getWorld();
 		BlockPos firstPos = event.getPos();
 
-		if(player.isSneaking() && target.getBlock() == ModBlocks.BLOCK_TEMPORARY) {
+		if (player.isSneaking() && target.getBlock() == ModBlocks.BLOCK_TEMPORARY) {
 			event.setCanceled(true);
 			replaceAllBlocks(world, firstPos, ModBlocks.BLOCK_TEMPORARY.getDefaultState(), Blocks.AIR.getDefaultState(), 16);
 		}
 	}
 
-	private void replaceAllBlocks(World world, BlockPos origin, IBlockState toReplace, IBlockState toPlace, int radius) {
+	private static void replaceAllBlocks(World world, BlockPos origin, IBlockState toReplace, IBlockState toPlace, int radius) {
 		Deque<BlockPos> queue = new ArrayDeque<BlockPos>();
 		queue.offerLast(origin);
 		world.setBlockState(origin, toPlace, 2);
 		Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(origin, toReplace);
 
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			BlockPos pos = queue.pollFirst();
-			if(origin.distanceSq(pos) <= radius * radius) {
-				for(BlockPos posIn : Utils.getAllInSphere(pos, 3)) { // (sqrt(3))^2 = 3
-					if(world.getBlockState(posIn) == toReplace) {
+			if (origin.distanceSq(pos) <= radius * radius) {
+				for (BlockPos posIn : Utils.getAllInSphere(pos, 3)) { // (sqrt(3))^2 = 3
+					if (world.getBlockState(posIn) == toReplace) {
 						queue.offerLast(posIn);
 						world.setBlockState(posIn, toPlace/*, 2*/);
 						Minecraft.getMinecraft().effectRenderer.addBlockDestroyEffects(posIn, toReplace);

@@ -22,23 +22,23 @@ import ryoryo.temporaryblock.item.ItemTemporaryBlockPlacer;
 public class RenderSelectionBox {
 
 	@SubscribeEvent
-	public void drawBlockHighlight(RenderWorldLastEvent event) {
+	public static void drawBlockHighlight(RenderWorldLastEvent event) {
 		EntityPlayer player = Utils.getPlayer();
 		World world = Utils.getWorld();
 
-		if(player != null && world != null) {
+		if (player != null && world != null) {
 			ItemStack stack = player.getHeldItemMainhand();
 
-			if(!stack.isEmpty() && stack.getItem() instanceof ItemTemporaryBlockPlacer) {
+			if (!stack.isEmpty() && stack.getItem() instanceof ItemTemporaryBlockPlacer) {
 				BlockPos pos = ItemTemporaryBlockPlacer.getAvailablePos(world, player);
-				if(pos != null && world.isAirBlock(pos)) {
+				if (pos != null && world.isAirBlock(pos)) {
 					renderSelectionBox(pos, world, player, event.getPartialTicks());
 				}
 			}
 		}
 	}
 
-	public void renderSelectionBox(BlockPos pos, World world, EntityPlayer player, float partialTickItem) {
+	public static void renderSelectionBox(BlockPos pos, World world, EntityPlayer player, float partialTickItem) {
 		double d3 = 0.002D;
 
 		GlStateManager.enableBlend();
