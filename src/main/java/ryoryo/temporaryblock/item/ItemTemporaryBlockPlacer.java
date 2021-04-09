@@ -287,6 +287,6 @@ public class ItemTemporaryBlockPlacer extends ItemBase {
 	}
 
 	public static boolean hasModTagCompound(ItemStack stack) {
-		return stack.hasTagCompound() && stack.getTagCompound().hasKey(References.MOD_ID);
+		return Utils.hasTagCompound(stack, References.MOD_ID);
 	}
 }
